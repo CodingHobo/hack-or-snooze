@@ -36,6 +36,7 @@ function generateStoryMarkup(story) {
 }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
+//2B
 
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");

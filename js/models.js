@@ -74,7 +74,7 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  //TODO: Part 2A
+  //2A
   async addStory(user, newStory) {
     const response = await axios({
       url: `${BASE_URL}/stories`,
