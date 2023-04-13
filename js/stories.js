@@ -40,6 +40,7 @@ function generateStoryMarkup(story) {
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 
+  //delete all stories in dom from previous load
   $allStoriesList.empty();
 
   // loop through all of our stories and generate HTML for them
@@ -48,5 +49,6 @@ function putStoriesOnPage() {
     $allStoriesList.append($story);
   }
 
+  //show is built in method, element previously hidden by hidePageComponents
   $allStoriesList.show();
 }

@@ -53,6 +53,9 @@ class StoryList {
     //  class directly. Why doesn't it make sense for getStories to be an
     //  instance method?
 
+    //TODO: ask why it's done this way, using the class as the list with stories
+    //in it, as opposed to creating 1 instance?
+
     // query the /stories endpoint (no auth required)
     const response = await axios({
       url: `${BASE_URL}/stories`,
@@ -73,8 +76,21 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  //TODO: Part 2A
+  async addStory(user, newStory) {
+    const storyInstance = await axios({
+      url: `${BASE_URL}/stories`,
+      method: "POST",
+      token: this.token,
+      newStory: {
+        title: this.title,
+        author: this.author,
+        url: this.url
+        }
+      // title: newStory.title,
+      // author: newStory.author,
+      // url: newStory.url
+    })
   }
 }
 
