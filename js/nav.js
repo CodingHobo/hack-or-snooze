@@ -35,6 +35,7 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
+  $navSubmit.show();
 }
 
 /** Shows form to add story to page */

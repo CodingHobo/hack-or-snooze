@@ -46,6 +46,7 @@ function putStoriesOnPage() {
   //delete all stories in dom from previous load
   $allStoriesList.empty();
 
+  console.log(storyList.stories);
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
@@ -56,7 +57,9 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-function submitStoryForm(evt){
+/** TODO: */
+
+async function submitStoryForm(evt){
 
   console.debug("submitStoryForm", evt);
   evt.preventDefault();
@@ -68,18 +71,24 @@ function submitStoryForm(evt){
 
   console.log("author", $author, "title", $title, "story-url", $storyUrl)
 
-  // // User.login retrieves user info from API and returns User instance
-  // // which we'll make the globally-available, logged-in user.
-  // currentUser = await User.login(username, password);
+  const newStory = {
+    author: $author,
+    title: $title,
+    url: $storyUrl
+  }
 
-  // $loginForm.trigger("reset");
+  $submitStoryForm.hide();
+  //TODO: potential problem if not logged in, fix elsewhere probably by hiding
+  //submit until login completed
 
-  // saveUserCredentialsInLocalStorage();
-  // updateUIOnUserLogin();
+  const storyToAdd = await storyList.addStory(currentUser, newStory);
+  // console.log("storyToAdd", storyToAdd)
+  $allStoriesList.prepend(storyToAdd);
+  location.reload();
 
 
-  //TODO: call addStory(user, newStory)
-  //TODO: put story on page
+
+
 }
 
 $submitStoryForm.on("submit", submitStoryForm);
