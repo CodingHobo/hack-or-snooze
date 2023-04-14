@@ -46,7 +46,7 @@ function putStoriesOnPage() {
   //delete all stories in dom from previous load
   $allStoriesList.empty();
 
-  console.log(storyList.stories);
+  // console.log(storyList.stories);
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
@@ -59,23 +59,22 @@ function putStoriesOnPage() {
 
 /** TODO: */
 
-async function submitStoryForm(evt){
-
+async function submitStoryForm(evt) {
   console.debug("submitStoryForm", evt);
   evt.preventDefault();
 
   // grab the username and password
-  const $author = $("#author").val();
-  const $title = $("#title").val();
-  const $storyUrl = $("#story-url").val();
+  const author = $("#author").val();
+  const title = $("#title").val();
+  const storyUrl = $("#story-url").val();
 
-  console.log("author", $author, "title", $title, "story-url", $storyUrl)
+  //console.log("author", $author, "title", $title, "story-url", $storyUrl)
 
   const newStory = {
-    author: $author,
-    title: $title,
-    url: $storyUrl
-  }
+    author: author,
+    title: title,
+    url: storyUrl,
+  };
 
   $submitStoryForm.hide();
   //TODO: potential problem if not logged in, fix elsewhere probably by hiding
@@ -83,12 +82,9 @@ async function submitStoryForm(evt){
 
   const storyToAdd = await storyList.addStory(currentUser, newStory);
   // console.log("storyToAdd", storyToAdd)
-  $allStoriesList.prepend(storyToAdd);
-  location.reload();
-
-
-
-
+  let $storyMarkup = generateStoryMarkup(storyToAdd);
+  $allStoriesList.prepend($storyMarkup);
+  $allStoriesList.show();
 }
 
 $submitStoryForm.on("submit", submitStoryForm);

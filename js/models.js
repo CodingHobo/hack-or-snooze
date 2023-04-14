@@ -89,7 +89,7 @@ class StoryList {
       },
     });
     const story = new Story(response.data.story);
-    this.stories.push(story);
+    this.stories.unshift(story);
 
     return story;
   }
@@ -148,6 +148,16 @@ class User {
       response.data.token
     );
   }
+
+  /**Allows user to select a favoite story, adds it to favorote story array;
+   * takes in a story instance, sends request to API;
+   */
+  addFavorite() {}
+
+  /**Allows user to de-select a favoite story, removes it from favorote story array;
+   * takes in a story instance, sends request to API;
+   */
+  removeFavorite() {}
 
   /** Login in user with API, make User instance & return it.
 
