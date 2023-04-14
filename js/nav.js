@@ -42,7 +42,8 @@ function navSubmitClick(evt) {
   console.debug('navSubmitClick', evt);
   evt.preventDefault();
   hidePageComponents();
-  $addStoryForm.show();
+  $submitStoryForm.show();
 }
+
 $navSubmit.on("click", navSubmitClick);
 

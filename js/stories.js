@@ -1,7 +1,7 @@
 "use strict";
 
 // const FORM_CONTAINER = document.querySelector(".account-forms-container");
-const NAV_BAR_DIV = document.querySelector(".navbar-brand");
+// const NAV_BAR_DIV = document.querySelector(".navbar-brand");
 
 // This is the global list of the stories, an instance of StoryList
 let storyList;
@@ -14,22 +14,6 @@ async function getAndShowStoriesOnStart() {
 
   putStoriesOnPage();
 }
-
-/** Add a form in the HTML for adding a new story. This should initially be
-hidden */
-
-// const addNewStoryForm = document.createElement("form");
-// addNewStoryForm.setAttribute("id", "new-story-form");
-// addNewStoryForm.classList.add("hidden");
-
-// FORM_CONTAINER.append(addNewStoryForm);
-
-const submitStory = document.createElement("a");
-submitStory.classList.add("nav-link");
-submitStory.setAttribute('id', 'submit-story');
-submitStory.innerText = "Submit";
-
-NAV_BAR_DIV.append(submitStory);
 
 /**
  * A render method to render HTML for an individual Story instance
@@ -71,3 +55,32 @@ function putStoriesOnPage() {
   //show is built in method, element previously hidden by hidePageComponents
   $allStoriesList.show();
 }
+
+function submitStoryForm(evt){
+
+  console.debug("submitStoryForm", evt);
+  evt.preventDefault();
+
+  // grab the username and password
+  const $author = $("#author").val();
+  const $title = $("#title").val();
+  const $storyUrl = $("#story-url").val();
+
+  console.log("author", $author, "title", $title, "story-url", $storyUrl)
+
+  // // User.login retrieves user info from API and returns User instance
+  // // which we'll make the globally-available, logged-in user.
+  // currentUser = await User.login(username, password);
+
+  // $loginForm.trigger("reset");
+
+  // saveUserCredentialsInLocalStorage();
+  // updateUIOnUserLogin();
+
+
+  //TODO: call addStory(user, newStory)
+  //TODO: put story on page
+}
+
+$submitStoryForm.on("submit", submitStoryForm);
+//$addStoryForm
