@@ -1,5 +1,8 @@
 "use strict";
 
+// const FORMS_CONTAINER = $(".account-forms-container");
+// console.log(FORMS_CONTAINER);
+
 // This is the global list of the stories, an instance of StoryList
 let storyList;
 
@@ -11,6 +14,15 @@ async function getAndShowStoriesOnStart() {
 
   putStoriesOnPage();
 }
+
+
+/** Add a form in the HTML for adding a new story. This should initially be
+hidden */
+
+const $addNewStoryForm = $("<form id='newStoryForm' class='hidden'></>");
+$(".account-forms-container").append($addNewStoryForm);
+
+
 
 /**
  * A render method to render HTML for an individual Story instance
@@ -36,7 +48,7 @@ function generateStoryMarkup(story) {
 }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
-//2B
+
 
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");

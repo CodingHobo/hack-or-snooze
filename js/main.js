@@ -21,7 +21,7 @@ const $navLogOut = $("#nav-logout");
 
 function hidePageComponents() {
   const components = [
-    $allStoriesList,
+    $pyiesList,
     $loginForm,
     $signupForm,
   ];
