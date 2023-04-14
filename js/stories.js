@@ -28,7 +28,9 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
-      <i class="bi bi-star"></i>
+        <span class = "star">
+          <i class="bi bi-star"></i>
+        </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -36,7 +38,7 @@ function generateStoryMarkup(story) {
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
       </li>
-    `);
+  `);
 }
 
 // <i class="bi bi-star-fill"></i>
@@ -54,6 +56,8 @@ function putStoriesOnPage() {
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
+    // const $star = $("story:first-child");
+    // $star.on("click", currentUser.addFavorite);
     $allStoriesList.append($story);
   }
 
@@ -89,7 +93,37 @@ async function submitStoryForm(evt) {
   let $storyMarkup = generateStoryMarkup(storyToAdd);
   $allStoriesList.prepend($storyMarkup);
   $allStoriesList.show();
+
 }
 
 $submitStoryForm.on("submit", submitStoryForm);
 //$addStoryForm
+
+// $allStoriesList.on("click", currentUser.addFavorite(evt));
+
+//When someone clicks on a star, we want to know which list item that star is on, so
+// we can get the story associated with that id
+$storiesContainer.on("click", ".star", toggleFavorite);
+
+function toggleFavorite(evt){
+
+  const $target = $(evt.target);
+  const id = $target.closest("li").attr("id");
+  getStoryFromId(id);
+
+}
+
+async function getStoryFromId(id){
+  const response = await axios({
+    url: `${BASE_URL}/stories/${id}`,
+    method: "GET",
+    data: { storyId: id},
+  });
+
+  console.log(response)
+  currentUser.addFavorite(response.data.story);
+  // return response.data;
+}
+//get a story from the api using the id we have
+//pass that story to a function called addFavorite/remove
+

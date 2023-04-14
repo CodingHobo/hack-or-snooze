@@ -152,14 +152,16 @@ class User {
   /**Allows user to select a favoite story, adds it to favorite story array;
    * takes in a story instance, sends request to API;
    */
-  addFavorite() {
+  addFavorite(story) {
+
 
     // assign variable to story id;
     // loop through storyList.stories looking for ID,
     // grab that object's index,
     // unshift that object onto the favorites arr,
     // update API with new story
-    currentUser.favorites.unshift()
+    currentUser.favorites.unshift(story);
+    console.log("favorites list", currentUser.favorites);
   }
 
   /**Allows user to de-select a favorite story, removes it from favorote story array;
