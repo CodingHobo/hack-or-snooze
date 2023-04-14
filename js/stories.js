@@ -1,6 +1,6 @@
 "use strict";
 
-const FORM_CONTAINER = document.querySelector(".account-forms-container");
+// const FORM_CONTAINER = document.querySelector(".account-forms-container");
 const NAV_BAR_DIV = document.querySelector(".navbar-brand");
 
 // This is the global list of the stories, an instance of StoryList
@@ -18,17 +18,18 @@ async function getAndShowStoriesOnStart() {
 /** Add a form in the HTML for adding a new story. This should initially be
 hidden */
 
-const addNewStoryForm = document.createElement("form");
-addNewStoryForm.setAttribute("id", "new-story-form");
-addNewStoryForm.classList.add("hidden");
+// const addNewStoryForm = document.createElement("form");
+// addNewStoryForm.setAttribute("id", "new-story-form");
+// addNewStoryForm.classList.add("hidden");
 
-FORM_CONTAINER.append(addNewStoryForm);
+// FORM_CONTAINER.append(addNewStoryForm);
 
-const submit = document.createElement("a");
-submit.classList.add("nav-link");
-submit.innerText = "Submit";
+const submitStory = document.createElement("a");
+submitStory.classList.add("nav-link");
+submitStory.setAttribute('id', 'submit-story');
+submitStory.innerText = "Submit";
 
-NAV_BAR_DIV.append(submit);
+NAV_BAR_DIV.append(submitStory);
 
 /**
  * A render method to render HTML for an individual Story instance

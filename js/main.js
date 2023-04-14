@@ -9,10 +9,12 @@ const $allStoriesList = $("#all-stories-list");
 
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
+const $addStoryForm = $('#add-story-form');
 
 const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
+const $navSubmit = $('#submit-story')
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -21,7 +23,7 @@ const $navLogOut = $("#nav-logout");
 
 function hidePageComponents() {
   const components = [
-    $pyiesList,
+    $allStoriesList,
     $loginForm,
     $signupForm,
   ];
