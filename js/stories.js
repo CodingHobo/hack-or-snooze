@@ -31,6 +31,9 @@ function generateStoryMarkup(story) {
         <span class = "star">
           <i class="bi bi-star"></i>
         </span>
+        <span class = "filled-star hidden">
+          <i class="bi bi-star-fill"></i>
+        </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -42,7 +45,6 @@ function generateStoryMarkup(story) {
 }
 
 // <i class="bi bi-star-fill"></i>
-
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
@@ -93,7 +95,6 @@ async function submitStoryForm(evt) {
   let $storyMarkup = generateStoryMarkup(storyToAdd);
   $allStoriesList.prepend($storyMarkup);
   $allStoriesList.show();
-
 }
 
 $submitStoryForm.on("submit", submitStoryForm);
@@ -105,25 +106,30 @@ $submitStoryForm.on("submit", submitStoryForm);
 // we can get the story associated with that id
 $storiesContainer.on("click", ".star", toggleFavorite);
 
-function toggleFavorite(evt){
-
+function toggleFavorite(evt) {
   const $target = $(evt.target);
-  const id = $target.closest("li").attr("id");
-  getStoryFromId(id);
+  console.log("this is the target", $target);
 
+  const $star = $target.parent();
+  const $filledStar = $target.parent().next();
+
+  const id = $target.closest("li").attr("id");
+
+  getStoryFromId(id);
+  $star.hide();
+  $filledStar.removeClass("hidden");
 }
 
-async function getStoryFromId(id){
+async function getStoryFromId(id) {
   const response = await axios({
     url: `${BASE_URL}/stories/${id}`,
     method: "GET",
-    data: { storyId: id},
+    data: { storyId: id },
   });
 
-  console.log(response)
+  console.log(response);
   currentUser.addFavorite(response.data.story);
   // return response.data;
 }
 //get a story from the api using the id we have
 //pass that story to a function called addFavorite/remove
-
